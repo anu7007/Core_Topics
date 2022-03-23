@@ -82,6 +82,13 @@ $container->set(
         return $session;
     }
 );
+$container->set(
+    'datetime',
+    function () {
+        $date=new DateTime();
+        return $date;
+    }
+);
 
 $container->set(
     'db',
