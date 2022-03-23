@@ -15,6 +15,7 @@ use Phalcon\Mvc\Controller;
 use Phalcon\Session\Manager;
 use Phalcon\Session\Adapter\Stream;
 use Phalcon\Http\Request;
+use Phalcon\Http\Response\Cookies;
 
 $config = new Config([]);
 
@@ -55,6 +56,14 @@ $container->set(
 );
 
 $application = new Application($container);
+
+$container->set( 
+    "cookies", function () { 
+       $cookies = new Cookies();  
+       $cookies->useEncryption(false);  
+       return $cookies; 
+    } 
+ ); 
 
 $container->set(
     'session',
