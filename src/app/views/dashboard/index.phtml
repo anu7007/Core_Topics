@@ -6,4 +6,9 @@
 </div>
 <?php
 echo $this->tag->linkTo(["logout", "LogOut!", 'class' => 'btn btn-danger mt-2'])."<br><br>";
-print_r($datetime);
+// print_r((array)$datetime);
+// die();
+
+foreach ((array)$datetime as $key => $value) {
+    echo "<br>".$key." : ".$value;
+}
