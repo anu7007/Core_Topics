@@ -1,0 +1,25 @@
+<h2 class="text-primary">Login Here</h2>
+
+<?php echo $this->tag->form(""); ?>
+
+<p>
+    <label for="email">Email</label>
+    <?php echo $this->tag->textField("email"); ?>
+</p>
+
+<p>
+    <label for="password">Password</label>
+    <?php echo $this->tag->passwordField("password"); ?>
+</p>
+<p>
+<?php echo $this->tag->checkField("remember_me")." "; ?>
+<label for="remember_me">Remember me</label>
+</p>
+<p>
+    <?php echo $this->tag->submitButton(["Login", 'class' => 'btn btn-primary mb-2']); ?>
+    
+</p>
+
+
+</form>
+<?php echo $this->getContent(); ?>

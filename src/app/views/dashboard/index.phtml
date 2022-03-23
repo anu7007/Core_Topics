@@ -1,0 +1,9 @@
+<div class="text text-info">
+<?php echo "Hello"."  "?>
+<div class='text text-danger'>
+    <?php echo $this->session->get("email");?>
+</div>
+</div>
+<?php
+echo $this->tag->linkTo(["logout", "LogOut!", 'class' => 'btn btn-danger mt-2']);
+echo $msg;
