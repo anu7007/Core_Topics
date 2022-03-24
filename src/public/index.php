@@ -12,9 +12,9 @@ use Phalcon\Http\Response;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Config;
 use Phalcon\Mvc\Controller;
-use Phalcon\Session\Manager;
 use Phalcon\Session\Adapter\Stream;
 use Phalcon\Http\Request;
+use Phalcon\Session\Manager;
 use Phalcon\Http\Response\Cookies;
 
 $config = new Config([]);

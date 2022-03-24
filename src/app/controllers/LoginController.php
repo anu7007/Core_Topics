@@ -16,32 +16,32 @@ class LoginController extends Controller
         $users = new Users();
         if ($this->cookies->has("cookie")) {
             header('location: /dashboard');
-        } 
-        if ($this->request->isPost()) {
-            // return $this->response->redirect('user/login');
-            // $this->view->message = "post";
-            $response = new Response();
-            $request = new Request();
-            $email = $this->request->getPost('email');
-            $password = $this->request->getPost('password');
-            if (empty($email) || empty($password)) {
-                // $this->view->message = $email;
-                $response->setStatusCode(403, 'Error');
-                $response->setContent("Authentication Failed");
-                $response->send();
-            } else {
-                $user = Users::findFirst(array(
-                    'email = :email: and password = :password:', 'bind' => array(
-                        'email' => $this->request->getPost("email"),
-                        'password' => $this->request->getPost("password")
-                    )
-                ));
-                if (!$user) {
-                    $response->setStatusCode(403, 'Wrong Credentials');
-                    $response->setContent("Incorrect Credentials");
+        } else {
+            if ($this->request->isPost()) {
+                // return $this->response->redirect('user/login');
+                // $this->view->message = "post";
+                $response = new Response();
+                $request = new Request();
+                $email = $this->request->getPost('email');
+                $password = $this->request->getPost('password');
+                if (empty($email) || empty($password)) {
+                    // $this->view->message = $email;
+                    $response->setStatusCode(403, 'Error');
+                    $response->setContent("Authentication Failed");
                     $response->send();
                 } else {
-                    
+                    $user = Users::findFirst(array(
+                        'email = :email: and password = :password:', 'bind' => array(
+                            'email' => $this->request->getPost("email"),
+                            'password' => $this->request->getPost("password")
+                        )
+                    ));
+                    if (!$user) {
+                        $response->setStatusCode(404, 'Wrong Credentials');
+                        $response->setContent("Incorrect Credentials");
+                        $response->send();
+                    } else {
+
                         global $container;
                         // $cookies  = new Cookies();
                         $cookies = $container->get('cookies');
@@ -58,7 +58,7 @@ class LoginController extends Controller
                             );
                         }
                         header('location: /dashboard');
-                    
+                    }
                 }
             }
         }
